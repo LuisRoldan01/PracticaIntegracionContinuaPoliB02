@@ -1,0 +1,15 @@
+pipeline{
+    agent any
+    eviroment {
+        appName = "variable"
+    }
+
+    stage(paso1){
+
+        steps{
+            script{
+                sh "echo 'hola mundo'"
+            }
+        }
+    }
+}
