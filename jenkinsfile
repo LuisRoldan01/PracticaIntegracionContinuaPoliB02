@@ -4,11 +4,13 @@ pipeline{
         appName = "variable"
     }
 
-    stage(paso1){
+    stages{
+        stage('paso1'){
 
-        steps{
-            script{
-                sh "echo 'hola mundo'"
+            steps{
+                script{
+                    sh "echo 'hola mundo'"
+                }
             }
         }
     }
