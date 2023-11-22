@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        docker {            
-            image 'mcr.microsoft.com/powershell'
-        }
-    }
+    agent any
 
     parameters{
         string(name: 'name_container', defaultValue: 'myweb', description: 'nombredocker')
@@ -34,7 +30,7 @@ pipeline {
             steps {
                 script{
                     sh ''' 
-                         docker stop ${name_final}
+                         docker stop ${name_container}
                     '''
                 }
             }
