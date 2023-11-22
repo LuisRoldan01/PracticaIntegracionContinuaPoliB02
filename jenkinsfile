@@ -1,8 +1,7 @@
 pipeline {
     agent {
         docker {            
-            image 'mcr.microsoft.com/azure-powershell'
-            args "--mount type=bind,src=/opt,dst=/opt -i -t --entrypoint=''"
+            image 'mcr.microsoft.com/powershell'
         }
     }
 
