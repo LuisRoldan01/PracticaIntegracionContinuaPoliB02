@@ -24,23 +24,7 @@ pipeline {
             }
         }
 
-        stage('stop'){
-
-            when {
-                expression {
-                    DOCKER_EXIST = sh(returnStdout: true, script: 'echo "$(docker ps -q --filter name=${name_final})"').trim()
-                    return DOCKER_EXIST != ''
-                }
-            }
-            steps {
-                script{
-                    sh ''' 
-                         docker stop ${name_final}
-                    '''
-                }
-            }
-
-        }
+       
 
                 stage('build') {
             steps {
