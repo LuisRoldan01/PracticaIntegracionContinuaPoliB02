@@ -1,26 +1,21 @@
 pipeline {
     agent any
-
     parameters{
         string(name: 'name_container', defaultValue: 'myweb', description: 'nombredocker')
         string(name: 'name_imagen', defaultValue: 'myweb', description: 'imagen')
         string(name: 'tag_imagen', defaultValue: 'latest', description: 'img tag')
         string(name: 'puerto_imagen', defaultValue: '3000', description: 'port')
     }
-
     environment{
         name_final = "${name_container}${tag_imagen}${puerto_imagen}"
     }
-
     stages {
         stage('Hello') {
             steps {
                 echo 'Hello World'
             }
         }
-
         stage('stop'){
-
             when {
                 expression {
                     DOCKER_EXIST = sh(returnStdout: true, script: 'echo "$(docker ps -q --filter name=${name_final})"').trim()
@@ -34,19 +29,15 @@ pipeline {
                     '''
                 }
             }
-
         }
-
                 stage('build') {
             steps {
                 script{
                     sh ''' 
                     docker build  -t ${name_imagen}:${tag_imagen}
                     '''
-                    }
-                    
-                }                    
-                                  
+                    }                    
+                }                                    
             }
             stage('run') {
             steps {
